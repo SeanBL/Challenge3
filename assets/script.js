@@ -1,18 +1,25 @@
 // Assignment code here
+// These arrays hold the characters for each character type.
 var lowerSet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 var upperSet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 var numSet = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
 var specialSet = ["!", "@", "#", "$", "%", "^", "&", "*"];
 
+// This empty array holds the entire index of the selected character type arrays. 
 var selectedSet = [];
+
+//This empty array holds one character from the character type arrays selected by the user.
 var result = [];
 
 
 function generatePassword() {
-  var passwordLength = '';
-  var ranOnce = false;
+  var passwordLength = '';         //This empty variable 
+  var ranOnce = false;            //This sets the variable to false.
+
+  /*This do while loop runs the code block first. Since the "if" statement conditional is already set to
+  false the "invalid" alert does not run.  */
   do {
-    if (ranOnce)
+    if (ranOnce)                  
       window.alert("Invalid input. Please try again.");
      passwordLength = window.prompt("Choose Password Length from 8 to 128");
      ranOnce = true;
