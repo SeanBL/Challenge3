@@ -17,6 +17,11 @@ function generatePassword() {
      window.alert("Invalid input. Please try again.");
    }
 
+   do {
+    if (lowerCase == "n" && upperCase == "n" && numeric == "n" && specialCharacters == "n") {
+      window.alert("Please select one character type.")
+    }
+
   var lowerCase = window.prompt("Would you like to include lowercase letters? (y/n)");
   
   if (lowerCase == "y") {
@@ -29,7 +34,7 @@ function generatePassword() {
   }
 
   var upperCase = window.prompt("Would you like to include uppercase letters? (y/n)")
-  
+ 
   if (upperCase == "y") {
     window.alert("Uppercase letters have been included");
     selectedSet = selectedSet.concat(upperSet);
@@ -59,7 +64,10 @@ function generatePassword() {
     window.alert("Special characters have not been included");
   } else {
     window.alert("Invalid input. Please try again.")
-  }
+  } 
+}
+
+while (lowerCase == "n" && upperCase == "n" && numeric == "n" && specialCharacters == "n");
 
   var result = '';
   var characterLength = selectedSet.length;
