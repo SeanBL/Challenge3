@@ -16,7 +16,7 @@ function generatePassword() {
   var passwordLength = '';         //This empty variable 
   var ranOnce = false;            //This sets the variable to false.
 
-  /*This do while loop runs the code block first. Since the "if" statement conditional is already set to
+  /*This do-while loop runs the code block first. Since the "if" statement conditional is already set to
   false the "invalid" alert does not run.  */
   do {
     if (ranOnce)                  
@@ -26,17 +26,20 @@ function generatePassword() {
     } while(!(passwordLength >= 8 && passwordLength <= 128))
     
     window.alert("you chose " + passwordLength)
+    /*This do-while loop runs the code that prompts that user to select character types for the 
+    password generator. If on criteria is not selected the loop will run until at least one criteria
+    is selected.*/
   do {
     if (lowerCase == "n" && upperCase == "n" && numeric == "n" && specialCharacters == "n") {
       window.alert("Please select one character type.")
-    }
+    }   //This if statement will run the alert if user selects no for each criteria.
 
   var lowerCase = window.prompt("Would you like to include lowercase letters? (y/n)");
   
   if (lowerCase == "y") {
-    result.push(lowerSet[Math.floor(Math.random()*lowerSet.length)]);
+    result.push(lowerSet[Math.floor(Math.random()*lowerSet.length)]);   //This randomly selects a character from the lowerSet array and places the character in the result array.
     window.alert("lowercase letters have been included");
-    selectedSet = selectedSet.concat(lowerSet);
+    selectedSet = selectedSet.concat(lowerSet);                         //This adds the entire contents of the lowerSet array into the selectedSet array.
   } else if (lowerCase == "n") {
     window.alert("lowercase letters have not been included");
   } else {
@@ -80,16 +83,20 @@ function generatePassword() {
   } 
 }
 
-while (lowerCase == "n" && upperCase == "n" && numeric == "n" && specialCharacters == "n");
+while (lowerCase == "n" && upperCase == "n" && numeric == "n" && specialCharacters == "n");    //This while loop sets the condition for the do-while loop. 
 
   
-  var characterLength = selectedSet.length;
+  var characterLength = selectedSet.length;              //This variable is set to the array length of the selectedSet once the user has selected each criteria.
+  /*This for loop has "i" set to the result.length since the criteria already selected has been already added
+  to the result array. This allows for the remaining characters that need to be added from the selectedSet array
+  to match the selected password length. The body of the for loop adds the remaing characters from the selectedSet 
+  array. */
   for (i = result.length; i < passwordLength; i++) {
 
     result.push(selectedSet[(Math.floor(Math.random() * characterLength))]);
   }
-  result = result.sort(() => (Math.random() > .5) ? 1 : -1);
-  result = result.join('');
+  result = result.sort(() => (Math.random() > .5) ? 1 : -1);     //This randomly sorts the characters in the results array.
+  result = result.join('');                                      //This
  console.log(result);
   return result;
 }
