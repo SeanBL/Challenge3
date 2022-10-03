@@ -5,19 +5,21 @@ var numSet = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
 var specialSet = ["!", "@", "#", "$", "%", "^", "&", "*"];
 
 var selectedSet = [];
-
+var result = [];
 
 
 function generatePassword() {
-  var passwordLength = window.prompt("Choose Password Length from 8 to 128");
-
-   if (passwordLength >= 8 && passwordLength <= 128) {
-     window.alert("you chose " + passwordLength)
-   }else {
-     window.alert("Invalid input. Please try again.");
-   }
-
-   do {
+  var passwordLength = '';
+  var ranOnce = false;
+  do {
+    if (ranOnce)
+      window.alert("Invalid input. Please try again.");
+     passwordLength = window.prompt("Choose Password Length from 8 to 128");
+     ranOnce = true;
+    } while(!(passwordLength >= 8 && passwordLength <= 128))
+    
+    window.alert("you chose " + passwordLength)
+  do {
     if (lowerCase == "n" && upperCase == "n" && numeric == "n" && specialCharacters == "n") {
       window.alert("Please select one character type.")
     }
@@ -25,6 +27,7 @@ function generatePassword() {
   var lowerCase = window.prompt("Would you like to include lowercase letters? (y/n)");
   
   if (lowerCase == "y") {
+    result.push(lowerSet[Math.floor(Math.random()*lowerSet.length)]);
     window.alert("lowercase letters have been included");
     selectedSet = selectedSet.concat(lowerSet);
   } else if (lowerCase == "n") {
@@ -32,10 +35,11 @@ function generatePassword() {
   } else {
     window.alert("Invalid input. Please try again.")
   }
-
+  
   var upperCase = window.prompt("Would you like to include uppercase letters? (y/n)")
- 
+  
   if (upperCase == "y") {
+    result.push(upperSet[Math.floor(Math.random()*upperSet.length)]);
     window.alert("Uppercase letters have been included");
     selectedSet = selectedSet.concat(upperSet);
   } else if (upperCase == "n") {
@@ -47,6 +51,7 @@ function generatePassword() {
   var numeric = window.prompt("Would you like to include numerics? (y/n)")
   
   if (numeric == "y") {
+    result.push(numSet[Math.floor(Math.random()*numSet.length)]);
     window.alert("Numerics have been included");
     selectedSet = selectedSet.concat(numSet);
   } else if (numeric == "n") {
@@ -58,6 +63,7 @@ function generatePassword() {
   var specialCharacters = window.prompt("Would you like to include special characters? (y/n)")
   
   if (specialCharacters == "y") {
+    result.push(specialSet[Math.floor(Math.random()*specialSet.length)]);
     window.alert("Special characters have been included");
     selectedSet = selectedSet.concat(specialSet);
   } else if (specialCharacters == "n") {
@@ -69,12 +75,14 @@ function generatePassword() {
 
 while (lowerCase == "n" && upperCase == "n" && numeric == "n" && specialCharacters == "n");
 
-  var result = '';
+  
   var characterLength = selectedSet.length;
-  for (i = 0; i < passwordLength; i++) {
+  for (i = result.length; i < passwordLength; i++) {
 
-    result += selectedSet[(Math.floor(Math.random() * characterLength))];
+    result.push(selectedSet[(Math.floor(Math.random() * characterLength))]);
   }
+  result = result.sort(() => (Math.random() > .5) ? 1 : -1);
+  result = result.join('');
  console.log(result);
   return result;
 }
