@@ -17,13 +17,16 @@ function generatePassword() {
   var ranOnce = false;            //This sets the variable to false.
 
   /*This do-while loop runs the code block first. Since the "if" statement conditional is already set to
-  false the "invalid" alert does not run.  */
+  false the "invalid" alert does not run, but the rest of the code in the "do" block does run. The ranOnce
+  variable is set to true in case the loop runs again so the alert will show first before the window prompt
+  The condition in the while loop determines if the loop continues.*/
   do {
-    if (ranOnce)                  
+    if (ranOnce) {                  
       window.alert("Invalid input. Please try again.");
+    }
      passwordLength = window.prompt("Choose Password Length from 8 to 128");
      ranOnce = true;
-    } while(!(passwordLength >= 8 && passwordLength <= 128))
+    } while(!(passwordLength >= 8 && passwordLength <= 128));
     
     window.alert("you chose " + passwordLength)
     /*This do-while loop runs the code that prompts that user to select character types for the 
@@ -34,6 +37,7 @@ function generatePassword() {
       window.alert("Please select one character type.")
     }   //This if statement will run the alert if user selects no for each criteria.
 
+  do {  
   var lowerCase = window.prompt("Would you like to include lowercase letters? (y/n)");
   
   if (lowerCase == "y") {
@@ -45,7 +49,9 @@ function generatePassword() {
   } else {
     window.alert("Invalid input. Please try again.")
   }
+  } while (!(lowerCase == "y" || lowerCase == "n"));
   
+  do {
   var upperCase = window.prompt("Would you like to include uppercase letters? (y/n)")
   
   if (upperCase == "y") {
@@ -57,7 +63,9 @@ function generatePassword() {
   } else {
     window.alert("Invalid input. Please try again.")
   }
+  } while(!(upperCase == "y" || upperCase == "n"));
 
+  do {
   var numeric = window.prompt("Would you like to include numerics? (y/n)")
   
   if (numeric == "y") {
@@ -69,7 +77,9 @@ function generatePassword() {
   } else {
     window.alert("Invalid input. Please try again.")
   }
+  } while(!(numeric == "y" || numeric == "n"));
 
+  do {
   var specialCharacters = window.prompt("Would you like to include special characters? (y/n)")
   
   if (specialCharacters == "y") {
@@ -80,7 +90,8 @@ function generatePassword() {
     window.alert("Special characters have not been included");
   } else {
     window.alert("Invalid input. Please try again.")
-  } 
+  }
+  } while(!(specialCharacters == "y" || specialCharacters == "n")); 
 }
 
 while (lowerCase == "n" && upperCase == "n" && numeric == "n" && specialCharacters == "n");    //This while loop sets the condition for the do-while loop. 
@@ -96,7 +107,7 @@ while (lowerCase == "n" && upperCase == "n" && numeric == "n" && specialCharacte
     result.push(selectedSet[(Math.floor(Math.random() * characterLength))]);
   }
   result = result.sort(() => (Math.random() > .5) ? 1 : -1);     //This randomly sorts the characters in the results array.
-  result = result.join('');                                      //This
+  result = result.join('');                                      //The join method removes the quotation marks from the array and saves the charaters without quotations to the result array.
  console.log(result);
   return result;
 }
